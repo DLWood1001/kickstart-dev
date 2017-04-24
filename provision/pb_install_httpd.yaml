@@ -1,0 +1,34 @@
+---
+- name: Setup httpd.
+  hosts: all
+  gather_facts: no
+
+  vars:
+    packages:
+      - 'httpd'
+
+  tasks:
+    - name: Test Ansible stack.
+      ping:
+
+    - name: Install httpd and dependencies.
+      dnf:
+        name: "{{item}}"
+        state: latest
+      with_items: "{{packages}}"
+      become: true
+
+    - name: Force httpd root directory link to kickstart folder.
+      file:
+        src: /vagrant/kickstart
+        dest: /var/www/html
+        state: link
+        force: true
+      become: true
+ 
+    - name: Update the service settings.
+      service:
+        name: httpd
+        state: started
+        enabled: true 
+      become: true

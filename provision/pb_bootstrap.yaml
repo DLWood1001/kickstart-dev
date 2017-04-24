@@ -1,0 +1,11 @@
+---
+- name: Setup Fedora 25 for Ansible Provisioners.
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Bootstrap | Install python and python2-dnf on Fedora 25.
+      raw: dnf install -y python python2-dnf
+      become: true
+
+
