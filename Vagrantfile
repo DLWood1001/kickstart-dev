@@ -14,12 +14,13 @@ Vagrant.configure("2") do |config|
       #    nfs_udp: false,
       #    nfs_version: 3
    
-      ks.vm.network "http_forward",
+      ks.vm.network "forwarded_port",
          guest: 80,
          host: 8080
 
-      ks.vm.network "kickstart_network",
-         ip: "192.168.0.101"
+      ks.vm.network "private_network",
+         ip: "192.168.0.101",
+         mask: "255.255.255.0"
 
       ks.vm.provision "boostrap",
          type: "ansible",

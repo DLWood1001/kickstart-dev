@@ -18,6 +18,13 @@
       with_items: "{{packages}}"
       become: true
 
+    - name: Update httpd config to reload static files from nfs share.
+      lineinfile:
+        name: /etc/httpd/conf/httpd.conf
+        regexp: '^(# *)?EnableSendFile (on|off)$'
+        line: 'EnableSendFile off'
+      become: true
+
     - name: Force httpd root directory link to kickstart folder.
       file:
         src: /vagrant/kickstart

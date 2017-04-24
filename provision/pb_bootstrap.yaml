@@ -5,7 +5,7 @@
 
   tasks:
     - name: Bootstrap | Install python and python2-dnf on Fedora 25.
-      raw: dnf install -y python python2-dnf
+      raw: dnf install -y python python2-dnf libselinux-python
       become: true
 
 
