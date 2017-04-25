@@ -4,7 +4,6 @@
 Vagrant.configure("2") do |config|
    config.vm.define "kickstart" do |ks|
       ks.vm.box = "bento/fedora-25"
-      ks.vm.provider = "libvirt"
 
       # ks.vm.synced_folder ".", "/vagrant",
       #    disabled: false,
